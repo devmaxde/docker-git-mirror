@@ -37,7 +37,7 @@ backup-server|https://github.com/grmanit/docker-git-mirror.git|https://github.co
 ```
 
 2. **Set up SSH keys and known hosts**:
-   Place your SSH private key, public key, and known_hosts file in the `docker-config` directory.
+   Place your SSH private key, public key, and known_hosts file in a config directory. Direct access is not recommended. You should also set the ssh-keys to read-only.
 
 3. **Use Docker Compose to run the application**:
    Update the `docker-compose.yml` file as follows and then start the service:
@@ -47,10 +47,10 @@ backup-server|https://github.com/grmanit/docker-git-mirror.git|https://github.co
      mirror:
        build: .
        volumes:
-         - "./docker-config/config.txt:/var/mirrors/config.txt"
-         - "./docker-config/github:/root/.ssh/id_rsa:ro"
-         - "./docker-config/github.pub:/root/.ssh/id_rsa.pub:ro"
-         - "./known_hosts:/root/.ssh/known_hosts"
+         - "./config/config.txt:/var/mirrors/config.txt"
+         - "./config/github:/root/.ssh/id_rsa:ro"
+         - "./config/github.pub:/root/.ssh/id_rsa.pub:ro"
+         - "./config/known_hosts:/root/.ssh/known_hosts"
    ```
 
    Run the Docker Compose command:
