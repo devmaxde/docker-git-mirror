@@ -1,0 +1,9 @@
+version: "3"
+services:
+  mirror:
+    build: .
+    volumes:
+      - "./docker-config/config.txt:/var/mirrors/config.txt"
+      - "./docker-config/github:/root/.ssh/id_rsa:ro"
+      - "./docker-config/github.pub:/root/.ssh/id_rsa.pub:ro"
+      - "./known_hosts:/root/.ssh/known_hosts"

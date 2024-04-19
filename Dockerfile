@@ -1,4 +1,4 @@
-FROM python:2
+FROM python:3
 
 ENV MIRRORS=/var/mirrors/data MIRROR_CONFIG=/var/mirrors/config.txt SLEEP=5m
 
