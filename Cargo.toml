@@ -5,10 +5,8 @@ publish = false
 version = "0.0.1"
 
 [dependencies]
-serde = { version = "*", features = ["derive"] }
-clap = { version = "*", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+clap = { version = "4.5", features = ["derive"] }
 
-toml = "0.8.19"
-
-
+toml = "0.8.20"
 execute = "0.2.13"
