@@ -124,6 +124,7 @@ fn main() {
         Commands::CreateConfig {} => {
             let config = Config {
                 repos: vec![RepoConfig {
+                    force: false,
                     ident: "my_project".to_string(),
                     source_url: "git@github.com:devmaxde/docker-git-mirror.git".to_string(),
                     target_url: "git@github.com:devmaxde/TestREPO.git".to_string(),
