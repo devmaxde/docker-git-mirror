@@ -3,6 +3,8 @@ name = "git-sync"
 edition = "2021"
 publish = true
 version = "0.0.1"
+description = "Simple tool to create and maintain a backup sync of your own repo"
+license = "MIT"
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
