@@ -114,7 +114,8 @@ fn sync_repo(repo: &RepoConfig) {
     let source_path = env::current_dir().unwrap();
     set_current_dir(source_path.clone().join(repo.ident.clone())).unwrap();
     command_suc!("git fetch -p origin");
-    command_suc!("git push --mirror");
+    let tmp = if repo.force { "--force" } else { "" };
+    command_suc!(format!("git push {} --mirror", tmp));
     set_current_dir(source_path).unwrap();
 }
 

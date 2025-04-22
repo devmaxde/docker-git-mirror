@@ -1,7 +1,6 @@
 services:
   mirror:
     build: .
-    #command: ["tail", "-f", "/dev/null"]
     volumes:
       - "./docker-config/config.toml:/root/config.toml"
       - "./docker-config/github:/root/.ssh/id_rsa:ro"

@@ -47,22 +47,25 @@ target_url = "git@github.com:devmaxde/TestREPO.git"
    Update the `docker-compose.yml` file as follows and then start the service:
 
    ```yaml
-   version: "3"
    services:
-     mirror:
-       build: .
-       volumes:
-         - "./config/config.toml:/root/config.toml"
-         - "./config/github:/root/.ssh/id_rsa:ro"
-         - "./config/github.pub:/root/.ssh/id_rsa.pub:ro"
-         - "./config/known_hosts:/root/.ssh/known_hosts"
+   mirror:
+     build: .
+     networks:
+       - internet
+     volumes:
+       - "./docker-config/config.toml:/root/config.toml"
+       - "./docker-config/github:/root/.ssh/id_rsa:ro"
+       - "./docker-config/github.pub:/root/.ssh/id_rsa.pub:ro"
+       - "./docker-config/known_hosts:/root/.ssh/known_hosts"
+   networks:
+     internet:
    ```
 
-   Run the Docker Compose command:
+Run the Docker Compose command:
 
-   ```bash
-   docker-compose up -d
-   ```
+```bash
+docker-compose up -d
+```
 
 ### Contributing
 
