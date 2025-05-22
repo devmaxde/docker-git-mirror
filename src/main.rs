@@ -80,17 +80,18 @@ fn force_default() -> bool {
 }
 
 fn read_config() -> Config {
-    let Ok(config_file) = fs::read_to_string("./config.toml") else {
-        eprintln!("Failed to read config.toml");
-        std::process::exit(1);
-    };
+    let config_file = fs::read_to_string("./config.toml")
+        .or_else(|_| fs::read_to_string("./config/config.toml"))
+        .unwrap_or_else(|_| {
+            eprintln!("Failed to read config.toml or config/config.toml");
+            std::process::exit(1);
+        });
 
-    let config: Config = toml::from_str(&config_file).unwrap_or_else(|e| {
+    toml::from_str(&config_file).unwrap_or_else(|e| {
         eprintln!("Failed to parse the configuration file");
         eprintln!("{}", e);
-        exit(1);
-    });
-    config
+        std::process::exit(1);
+    })
 }
 
 fn init_repo(repo: &RepoConfig) {
