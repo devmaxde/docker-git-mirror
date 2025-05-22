@@ -11,7 +11,11 @@ use std::{
 
 pub fn build_command(command: impl ToString, append_command: Option<String>) -> Command {
     let command = command.to_string();
-    println!("Building command: {} {:?}", command, append_command);
+    println!(
+        "Building command: {} {}",
+        command,
+        append_command.clone().unwrap_or("".to_string())
+    );
 
     let mut data = command.split_whitespace().collect::<Vec<&str>>();
     let mut command = if data.len() == 1 {
@@ -31,7 +35,6 @@ pub fn build_command(command: impl ToString, append_command: Option<String>) -> 
     }
     command
 }
-#[macro_export]
 macro_rules! command_suc {
     ($cmd:expr, $append:expr) => {
         assert!(build_command($cmd, $append.clone())
@@ -54,7 +57,6 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     Run {},
-
     CreateConfig {},
 }
 
@@ -115,8 +117,8 @@ fn sync_repo(repo: &RepoConfig) {
     let source_path = env::current_dir().unwrap();
     set_current_dir(source_path.clone().join(repo.ident.clone())).unwrap();
     command_suc!("git fetch -p origin");
-    let tmp = if repo.force { "--force" } else { "" };
-    command_suc!(format!("git push {} --mirror", tmp));
+    let force = if repo.force { "--force" } else { "" };
+    command_suc!(format!("git push {} --mirror", force));
     set_current_dir(source_path).unwrap();
 }
 
