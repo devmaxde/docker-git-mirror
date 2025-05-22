@@ -2,7 +2,7 @@
 name = "git-sync"
 edition = "2021"
 publish = true
-version = "0.0.1"
+version = "0.1.0"
 description = "Simple tool to create and maintain a backup sync of your own repo"
 license = "MIT"
 
