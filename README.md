@@ -19,11 +19,11 @@ This repository hosts a Docker application designed to automate the mirroring of
 
 1. **Clone this repository**:
    ```bash
-   git clone https://github.com/devmaxde/docker-git-mirror.git
+   git clone https://github.com/devmaxde/git-sync.git
    ```
 2. **Navigate to the project directory**:
    ```bash
-   cd docker-git-mirror
+   cd git-sync
    ```
 
 ### Usage
@@ -36,7 +36,7 @@ timeout = 120
 
 [[repos]]
 ident = "my_project"
-source_url = "git@github.com:devmaxde/docker-git-mirror.git"
+source_url = "git@github.com:devmaxde/git-sync.git"
 target_url = "git@github.com:devmaxde/TestREPO.git"
 ```
 
@@ -53,10 +53,10 @@ target_url = "git@github.com:devmaxde/TestREPO.git"
      networks:
        - internet
      volumes:
-       - "./docker-config/config.toml:/root/config.toml"
+       - "./docker-config/config.toml:/root/config.toml:ro"
        - "./docker-config/github:/root/.ssh/id_rsa:ro"
        - "./docker-config/github.pub:/root/.ssh/id_rsa.pub:ro"
-       - "./docker-config/known_hosts:/root/.ssh/known_hosts"
+       - "./docker-config/known_hosts:/root/.ssh/known_hosts:ro"
    networks:
      internet:
    ```

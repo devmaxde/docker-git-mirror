@@ -1,12 +1,12 @@
 name: Build and Publish
-permissions: 
-  packages: write 
+permissions:
+  packages: write
   contents: read
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 env:
-  IMAGE_NAME: devmaxde/docker-git-mirror
+  IMAGE_NAME: devmaxde/git-sync
 jobs:
   build-and-push-docker-image:
     if: github.ref == 'refs/heads/master'
@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          submodules: 'true'
+          submodules: "true"
           token: ${{ secrets.github_token }}
       - uses: docker/setup-qemu-action@v2
         with:
