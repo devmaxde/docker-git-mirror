@@ -101,7 +101,7 @@ fn init_repo(repo: &RepoConfig) {
     println!("{:?}", source_path);
 
     command_suc!(format!(
-        "git clone --mirror {} {}",
+        "git clone --bare {} {}",
         repo.source_url, repo.ident
     ));
 
